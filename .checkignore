@@ -1,0 +1,2 @@
+test_app/*
+django_state_machines/tests/*
