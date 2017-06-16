@@ -186,8 +186,6 @@ class BaseStateHandler(TransitionProcessMixin, TransitionAddingMixin):
         self.handler_key = "{0}_{1}".format(self.__class__, field_name)
         self.states_map = StateMachineMap()
         self.state_choices = kwargs.get('state_choices', [])
-        self._default = None
-        self.default = kwargs.get('default')
         self.instance = None
         if self.state_choices:
             self._init_state_choices()
@@ -209,14 +207,3 @@ class BaseStateHandler(TransitionProcessMixin, TransitionAddingMixin):
         for node in self.states_map.machine_map.values():
             choices.append((node.state.id, node.state.value))
         return choices
-
-    @property
-    def default(self):
-        if self._default is not None:
-            return self._default
-        if self.state_choices:
-            return self.state_choices[0][0]
-
-    @default.setter
-    def default(self, value):
-        self._default_choice = value

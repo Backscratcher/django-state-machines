@@ -30,13 +30,9 @@ class StateMachineMixin(object):
     def contribute_to_class(self, cls, name, **kwargs):
         super(StateMachineMixin, self).contribute_to_class(cls, name, **kwargs)
         field_type = self._get_field_type(cls)
-        default = self._get_default(cls)
-        self.handler = self.handler_class(name, field_type, state_choices=self.state_choices, default=default)
+        self.handler = self.handler_class(name, field_type, state_choices=self.state_choices)
         if not self.choices:
             self.choices = self.handler.choices
-
-        if not default:
-            self.default = self.handler.default
 
         def property_handler(self, method, instance):
             handler_name = '_{0}'.format(method)
@@ -56,11 +52,6 @@ class StateMachineMixin(object):
             return 'int'
         elif isinstance(cls, models.CharField):
             return 'str'
-
-    def _get_default(self, cls):
-        if self.default == models.fields.NOT_PROVIDED:
-            return None
-        return self.default
 
 
 class StateMachineIntegerField(StateMachineMixin, models.IntegerField):
