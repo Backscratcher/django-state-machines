@@ -11,5 +11,5 @@ if __name__ == "__main__":
     if len(sys.argv) == 1:
         sys.argv += ['test']
 
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "test_app.test_app.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "test_app.settings")
     execute_from_command_line(sys.argv)
