@@ -7,7 +7,7 @@ except IOError:
 
 setup(
     name='django-state-machines',
-    version='0.1',
+    version='0.1.2',
     description='Django finite state machine implementation',
     author='Karol Sztajerwald',
     author_email='sztajerwaldkarol@gmail.com',
