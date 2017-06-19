@@ -152,8 +152,8 @@ class TransitionAddingMixin(object):
         on the handler will be moved to the name with underscore.
         """
         handler_method = self._check_trigger(trigger)
-        start_state = StateCache.get_state(self.handler_key, start_state, type=self.field_type)
-        end_state = StateCache.get_state(self.handler_key, end_state, type=self.field_type)
+        start_state = StateCache.get_state(self.handler_key, start_state, field_type=self.field_type)
+        end_state = StateCache.get_state(self.handler_key, end_state, field_type=self.field_type)
         transition = Transition(handler_method, start_state, end_state, before, after)
         self.states_map.add_transition(transition)
 
